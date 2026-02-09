@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "LangFix",
+  "version": "1.0",
+  "description": "Automatically detects and corrects text typed in the wrong language (Hebrew/English).",
+  "permissions": ["activeTab", "scripting", "clipboardRead", "clipboardWrite"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "fix-text": {
+      "suggested_key": {
+        "default": "Alt+X"
+      },
+      "description": "Fix the selected text"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["dictionary.js", "content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "128": "icons/icon128.png"
+  }
+}
